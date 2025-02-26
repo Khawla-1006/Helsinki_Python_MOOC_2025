@@ -27,9 +27,21 @@ def search_by_name(filename: str, word: str):
             found.append(name)
     return found
 
+def search_by_time(filename: str, prep_time: int):
+    times = []
+    found_time = []
+    recipes = recipe_maker(filename)
+    for recipe in recipes:
+        time = (recipe[0],int(recipe[1]))
+        times.append(time)
+    for item in times :
+        if item[1] <= prep_time+5  :
+            res = f"{item[0]}, preparation time {item[1]} min"
+            found_time.append(res)
+    return found_time
 
-            
+    
 if __name__ == "__main__":
-    found_recipes = search_by_name("recipes1.txt", "cake")
+    found_recipes = search_by_time("recipes1.txt", 35)
     for recipe in found_recipes:
         print(recipe)
