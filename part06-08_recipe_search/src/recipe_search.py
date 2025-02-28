@@ -40,8 +40,23 @@ def search_by_time(filename: str, prep_time: int):
             found_time.append(res)
     return found_time
 
+
+def search_by_ingredient(filename: str, ingredient: str) :
+    found = []
+    ing = []
+    recipes = recipe_maker(filename)
+    for recipe in recipes :
+        ing.append((recipe[0],int(recipe[1]),recipe[2:]))
+    for i in ing :
+        if ingredient in i[2]:
+            res = f"{i[0]}, preparation time {i[1]} min"
+            found.append(res)
+    return found
+
+
+
     
 if __name__ == "__main__":
-    found_recipes = search_by_time("recipes1.txt", 35)
+    found_recipes = search_by_ingredient("recipes1.txt", "eggs")
     for recipe in found_recipes:
         print(recipe)
